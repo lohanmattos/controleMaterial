@@ -1,21 +1,40 @@
 <header th:fragment="cabecalho">
-  <nav class="navbar navbar-light bg-light" style="padding:10px; ">
-    <div class="container">
-      <h2>Controle de Material Carga</h2>
-      <form class="form-inline my-2 my-lg-0" action="/pesquisar/">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" name="id" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-      <div class="row">
-        <div class="col-sm-06">
-        </div>
-        <div class="col-sm">
-          <a class="btn btn-outline-success my-2 my-sm-0" th:href="@{/novo}" role="button">Novo Material</a>
-        </div>
-        <div class="col-sm-06">
-          <a class="btn btn-outline-success" th:href="@{/}" role="button">Página Inicial<i class="bi bi-card-list"></i>
-          </a>
-        </div>
-      </div>
-  </nav>
+		<nav class="navbar navbar-default navbar-fixed-top">
+		    <div class="container">
+		        <div class="navbar-header">
+		            <button type="button" class="navbar-toggle collapsed"
+		                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+		                    aria-controls="navbar">
+		                <span class="sr-only">Toggle navigation</span>
+		                <span class="icon-bar"></span>
+		                <span class="icon-bar"></span>
+		                <span class="icon-bar"></span>
+		            </button>
+		
+		            <a class="navbar-brand" href="/">Controle Material</a>
+		        </div>
+		        <div id="navbar" class="collapse navbar-collapse">
+		            <ul class="nav navbar-nav">
+						<li><a href="/">Material</a></li>
+		            </ul>
+		            <ul class="nav navbar-nav">
+						<li><a href="/novo">Cadastrar Material</a></li>
+		            </ul>
+		            
+		            <ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								Contato 
+								<span class="caret"></span>
+							</a>
+							
+							<ul class="dropdown-menu">
+								<li><a href="https://www.linkedin.com/in/lohan-amendola-a09b93154/" target="_blank">Linkedin</a></li>
+
+							</ul>
+						</li>
+		            </ul>
+		        </div>
+		    </div>
+		</nav>
 </header>
