@@ -1,0 +1,24 @@
+<table class="table"  th:fragment="tabela">
+  <thead>
+    <tr>
+      <th scope="col">Número Patrimonial</th>
+      <th scope="col">Nomeclatura</th>
+      <th scope="col">Seção</th>
+      <th scope="col">Status</th>
+      <th scope="col">Data da Conferencia</th>
+      <th scope="col">Alterar</th>
+      <th scope="col">Deletar<th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="produto : ${listarProduto}">
+    	<td><span th:text="${produto.numeroPatrimonial}"></span></td>
+		<td><span th:text="${produto.nomeclatura}"></span></td>
+		<td><span th:text="${produto.setor}"></span></td>
+		<td><span th:text="${produto.status}"></span></td>
+		<td><span th:text="${produto.dataConferido}"></span></td>
+		<td><a th:href="@{/{id}(id=${produto.numeroPatrimonial})}" class="btn btn-outline-primary">Alterar</a></td>
+		<td><a th:href="@{/deletar/{id}(id=${produto.numeroPatrimonial})}" class="btn btn-outline-danger">Excluir</a></td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,21 @@
+<header th:fragment="cabecalho">
+  <nav class="navbar navbar-light bg-light" style="padding:10px; ">
+    <div class="container">
+      <h2>Controle de Material Carga</h2>
+      <form class="form-inline my-2 my-lg-0" action="/pesquisar/">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" name="id" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      <div class="row">
+        <div class="col-sm-06">
+        </div>
+        <div class="col-sm">
+          <a class="btn btn-outline-success my-2 my-sm-0" th:href="@{/novo}" role="button">Novo Material</a>
+        </div>
+        <div class="col-sm-06">
+          <a class="btn btn-outline-success" th:href="@{/}" role="button">Página Inicial<i class="bi bi-card-list"></i>
+          </a>
+        </div>
+      </div>
+  </nav>
+</header>
