@@ -6,7 +6,6 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -14,8 +13,42 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "tb_produto")
 public class Produto {
 
+	@Override
+	public String toString() {
+		return "Produto [numeroPatrimonial=" + numeroPatrimonial + ", nomeclatura=" + nomeclatura + ", quantidade="
+				+ quantidade + ", valor=" + valor + ", setor=" + setor + ", status=" + status + ", dataConferido="
+				+ dataConferido + "]";
+	}
+
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(dataConferido, nomeclatura, numeroPatrimonial, quantidade, setor, status, valor);
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produto other = (Produto) obj;
+		return Objects.equals(dataConferido, other.dataConferido) && Objects.equals(nomeclatura, other.nomeclatura)
+				&& Objects.equals(numeroPatrimonial, other.numeroPatrimonial) && quantidade == other.quantidade
+				&& Objects.equals(setor, other.setor) && Objects.equals(status, other.status)
+				&& Double.doubleToLongBits(valor) == Double.doubleToLongBits(other.valor);
+	}
+
+
+
+
 	@Id
-	@NotEmpty
 	private String numeroPatrimonial;
 	
 	private String nomeclatura; 
@@ -31,11 +64,13 @@ public class Produto {
 	@DateTimeFormat(pattern = ("yyyy-MM-dd"))
 	private LocalDate dataConferido;
 
-	@Deprecated
+	
 	protected Produto() {
 		
 	}
 	
+
+
 	public Produto(String numeroPatrimonial ) {
 		this.numeroPatrimonial = numeroPatrimonial;
 	}
@@ -94,11 +129,6 @@ public class Produto {
 
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(dataConferido, nomeclatura, numeroPatrimonial, quantidade, setor, status, valor);
 	}
 
 	

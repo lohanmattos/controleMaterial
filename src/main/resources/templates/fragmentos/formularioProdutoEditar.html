@@ -1,7 +1,7 @@
-<section class="container" th:fragment="formularioProduto">
+<section class="container" th:fragment="formularioProdutoEditar">
 <br>
 <br>
-<h3 class="page-header">Cadastar Produto</h3>
+<h3 class="page-header">Editar Produto</h3>
 <form action="#" th:action="@{/salvar}" th:object="${produto}" method="POST" >
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -15,8 +15,7 @@
 									<label class="control-label">Número Patrimonial:</label>
 									<input type="text" class="form-control" th:field="*{numeroPatrimonial}" name="numeroPatrimonial"/>
 								</div>
-							</div>
-							
+							</div>							
 							
 							<div class="col-sm-3">
 								<div class="form-group">
