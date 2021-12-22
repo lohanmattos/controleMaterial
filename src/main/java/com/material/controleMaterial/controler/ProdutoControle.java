@@ -1,5 +1,6 @@
 package com.material.controleMaterial.controler;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,13 +62,33 @@ public class ProdutoControle {
 		return "editarProduto";
 	}
 		
-	
 		
 	//Deletar Produto
 	@RequestMapping(path = "/deletar/{id}", method = RequestMethod.GET)
 	public String excluirProduto(@PathVariable String id) {
 		produtoRepositorio.deleteById(id);
 		return "redirect:/produtos";
+	}
+	
+	
+	@GetMapping(path ="/listar")
+	public String findId(@RequestParam String numeroPatrimonial, String nomeclatura, Model model, Produto produto) {
+		
+		Optional<Produto> produto1 = produtoRepositorio.findById(numeroPatrimonial);
+		
+		if (produto1.isPresent()) {
+			
+			List<Produto> produtoListado =  produto1.stream().
+					filter(p -> p.getNumeroPatrimonial() == numeroPatrimonial || p.getNomeclatura() == nomeclatura)
+					.toList();
+			model.addAttribute("listarProduto", produtoListado);
+			
+			return "home"; 
+		}else {
+			
+			return "redirect:/produtos" ;
+		}
+		
 	}
 	
 		
