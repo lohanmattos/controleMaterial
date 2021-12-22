@@ -3,7 +3,8 @@ package com.material.controleMaterial.controler;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Collection;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -72,17 +73,15 @@ public class ProdutoControle {
 	
 	
 	@GetMapping(path ="/listar")
-	public String findId(@RequestParam String numeroPatrimonial, String nomeclatura, Model model, Produto produto) {
+	public String findId(@RequestParam String numeroPatrimonial, Model model) {
 		
 		 Optional<Produto> produto1 = produtoRepositorio.findById(numeroPatrimonial);
 			
-			List<Produto> produtoListado =  produto1.stream().filter(p -> p.getNumeroPatrimonial() == numeroPatrimonial).toList();
-			model.addAttribute("listarProduto", produtoListado);
+			model.addAttribute("listarProduto", produto1);
 			
 			return "redirect:/produtos" ;
 			
 	}
-	
 		
 
 }
