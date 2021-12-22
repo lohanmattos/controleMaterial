@@ -2,7 +2,7 @@
 <br>
 <br>
 <h3 class="page-header">Material Carga</h3>
-<form  action="/pesquisar" >
+<form method="get" action="#" th:action="@{/listar}" th:object="${produto}" >
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						Filtro
@@ -13,14 +13,13 @@
 							<div class="col-sm-4">
 								<div class="form-group">
 									<label class="control-label" for="codigo">Número Patrimonial: </label>
-									<input class="form-control" id="codigo"/>
+									<input class="form-control" name="numeroPatrimonial"/>
 								</div>
 							</div>
 							
 							<div class="col-sm-8">
 								<div class="form-group">
-									<label class="control-label" for="nome">Descrição:</label>
-									<input class="form-control" id="nome"/>
+									
 								</div>
 							</div>
 						</div>

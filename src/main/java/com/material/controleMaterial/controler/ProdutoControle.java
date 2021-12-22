@@ -1,8 +1,6 @@
 package com.material.controleMaterial.controler;
 
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,8 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.material.controleMaterial.model.Produto;
 import com.material.controleMaterial.repositorio.ProdutoRepositorio;
@@ -29,12 +25,14 @@ public class ProdutoControle {
 	
 	@Autowired
 	private ProdutoRepositorio produtoRepositorio;
-	
+		
 	
 	//Listar
-	@GetMapping("/")
-	public String listarProduto(Model model) {
-		model.addAttribute("listarProduto", produtoRepositorio.findAll());
+	@RequestMapping("/produtos")
+	public String listarProduto(Model model) {		
+		List<Produto> produto = produtoRepositorio.findAll();		
+		model.addAttribute("listarProduto", produto);
+		
 		return "home";
 		
 	}
@@ -50,25 +48,48 @@ public class ProdutoControle {
 	public String salvarProduto(Model model, Produto produto) {
 		model.addAttribute("produto", produtoRepositorio.save(produto));
 
-		return "redirect:/";	
+		return "redirect:/produtos";	
 	}
 	
 	//Editar Produto
-		@GetMapping("/{numeroPatrimonial}")
-		public String alterarProduto(@PathVariable("numeroPatrimonial") String numeroPatrimonial, Model model) {
-			Optional<Produto> produto = produtoRepositorio.findById(numeroPatrimonial);
+	@GetMapping("/{numeroPatrimonial}")
+	public String alterarProduto(@PathVariable("numeroPatrimonial") String numeroPatrimonial, Model model) {
+		Optional<Produto> produto = produtoRepositorio.findById(numeroPatrimonial);
 			
-			model.addAttribute("produto", produto);
+		model.addAttribute("produto", produto);
 			
-			return "editarProduto";
+		return "editarProduto";
+	}
+		
+	@GetMapping(path ="/listar")
+	public String findId(@RequestParam String numeroPatrimonial, String nomeclatura, Model model) {
+		
+		Optional<Produto> produto = produtoRepositorio.findById(numeroPatrimonial);
+		
+		if (produto.isPresent()) {
+			
+			List<Produto> produtoListado =  produto.stream().
+					filter(p -> p.getNumeroPatrimonial() == numeroPatrimonial || p.getNomeclatura() == nomeclatura)
+					.toList();
+			model.addAttribute("listarProduto", produtoListado);
+			
+			return "home"; 
+		}else {
+			
+			return "redirect:/produtos" ;
 		}
+		
+	}
+		
 	
 	//Deletar Produto
 	@RequestMapping(path = "/deletar/{id}", method = RequestMethod.GET)
 	public String excluirProduto(@PathVariable String id) {
 		produtoRepositorio.deleteById(id);
-		return "redirect:/";
+		return "redirect:/produtos";
 	}
 	
+	
+
 
 }
