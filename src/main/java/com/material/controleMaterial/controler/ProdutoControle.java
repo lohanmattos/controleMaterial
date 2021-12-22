@@ -61,25 +61,7 @@ public class ProdutoControle {
 		return "editarProduto";
 	}
 		
-	@GetMapping(path ="/listar")
-	public String findId(@RequestParam String numeroPatrimonial, String nomeclatura, Model model) {
-		
-		Optional<Produto> produto = produtoRepositorio.findById(numeroPatrimonial);
-		
-		if (produto.isPresent()) {
-			
-			List<Produto> produtoListado =  produto.stream().
-					filter(p -> p.getNumeroPatrimonial() == numeroPatrimonial || p.getNomeclatura() == nomeclatura)
-					.toList();
-			model.addAttribute("listarProduto", produtoListado);
-			
-			return "home"; 
-		}else {
-			
-			return "redirect:/produtos" ;
-		}
-		
-	}
+	
 		
 	//Deletar Produto
 	@RequestMapping(path = "/deletar/{id}", method = RequestMethod.GET)
