@@ -80,8 +80,6 @@ public class ProdutoControle {
 		}
 		
 	}
-
-
 		
 	//Deletar Produto
 	@RequestMapping(path = "/deletar/{id}", method = RequestMethod.GET)
@@ -90,7 +88,6 @@ public class ProdutoControle {
 		return "redirect:/produtos";
 	}
 	
-	
-
+		
 
 }
