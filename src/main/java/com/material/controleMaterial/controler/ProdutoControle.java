@@ -76,8 +76,8 @@ public class ProdutoControle {
 		
 		Optional<Produto> produto1 = produtoRepositorio.findById(numeroPatrimonial);
 			
-			List<Produto> produtoListado =  produto1.stream().
-					filter(p -> p.getNumeroPatrimonial() == numeroPatrimonial || p.getNomeclatura() == nomeclatura)
+			List<Produto> produtoListado =  produto1.stream()
+					.filter(p -> p.getNumeroPatrimonial() == numeroPatrimonial || p.getNomeclatura() == nomeclatura)
 					.toList();
 			model.addAttribute("listarProduto", produtoListado);
 			
