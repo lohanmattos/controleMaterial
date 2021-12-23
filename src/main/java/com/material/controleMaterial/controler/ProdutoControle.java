@@ -97,14 +97,14 @@ public class ProdutoControle {
 	
 	}
 	@GetMapping(path ="/listar")
-	public String findId(@RequestParam String numeroPatrimonial, String nomeclatura, Model model) {
+	public String findId(@RequestParam String numeroPatrimonial, Model model) {
 		
 		Optional<Produto> produto = produtoRepositorio.findById(numeroPatrimonial);
 		
 		if (produto.isPresent()) {
 			
 			List<Produto> produtoListado =  produto.stream().
-					filter(p -> p.getNumeroPatrimonial() == numeroPatrimonial || p.getNomeclatura() == nomeclatura)
+					filter(p -> p.getNumeroPatrimonial() == numeroPatrimonial)
 					.toList();
 			model.addAttribute("listarProduto", produtoListado);
 			
