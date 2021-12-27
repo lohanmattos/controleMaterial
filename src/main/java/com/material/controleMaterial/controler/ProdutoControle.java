@@ -34,18 +34,15 @@ public class ProdutoControle {
 	@Autowired
 	private ProdutoRepositorio produtoRepositorio;
 		
-	/*
+	
 //Listar
 	@RequestMapping("/produtos")
-	public String listarProduto(Model model) {		
-		List<Produto> produto = produtoRepositorio.findAll();		
-		model.addAttribute("listarProduto", produto);
-		
-		return "home";
-		
-	}
-
-	*/
+	public String listarProduto(@PageableDefault(size = 3) Pageable pageable, Model model) {				
+		      Page<Produto> produto = produtoRepositorio.findAll(pageable);
+		      model.addAttribute("page", produto);
+		      return "home";
+		  }
+					
 	
 	//Novo
 	@GetMapping("/novo")
@@ -59,7 +56,7 @@ public class ProdutoControle {
 	public String salvarProduto(Model model, Produto produto) {
 		model.addAttribute("produto", produtoRepositorio.save(produto));
 
-		return "redirect:/ppage";	
+		return "redirect:/produtos";	
 	}
 	
 	//Editar Produto
@@ -77,7 +74,7 @@ public class ProdutoControle {
 	@RequestMapping(path = "/deletar/{id}", method = RequestMethod.GET)
 	public String excluirProduto(@PathVariable String id) {
 		produtoRepositorio.deleteById(id);
-		return "redirect:/ppage";
+		return "redirect:/produtos";
 	}
 	
 	
@@ -98,7 +95,7 @@ public class ProdutoControle {
 			return "redirect:/produtos";
 			
 		} catch (Exception e) {
-			 return "redirect:/ppage";
+			 return "redirect:/produtos";
 		}
 	
 	}
@@ -117,18 +114,9 @@ public class ProdutoControle {
 			return "home"; 
 		}else {
 			
-			return "redirect:/ppage" ;
+			return "redirect:/produtos" ;
 		}
 		
 	}
 	
-	  @GetMapping("/ppage")
-	  public String getEmployees(@PageableDefault(size = 5) Pageable pageable,
-	                             Model model) {
-	      Page<Produto> page = produtoRepositorio.findAll(pageable);
-	      model.addAttribute("page", page);
-	      return "home";
-	  }
-	
-
 }

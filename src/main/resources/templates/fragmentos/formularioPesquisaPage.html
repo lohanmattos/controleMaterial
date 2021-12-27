@@ -57,15 +57,15 @@
 				</tbody>
 </table>	
 <ul class="pagination justify-content-center">
-  <li class="page-item" th:if="${page.hasPrevious()}"><a class="page-link" th:href="@{/ppage(page=${page.number-1},size=${page.size})}">Anterior</a></li>
+  <li class="page-item" th:if="${page.hasPrevious()}"><a class="page-link" th:href="@{/produtos(page=${page.number-1},size=${page.size})}">Anterior</a></li>
  
   <th:block th:each="i: ${#numbers.sequence(0, page.totalPages - 1)}">
       
         <li class="page-item" th:unless="${page.number == i}">
-             <a th:href="@{/ppage(page=${i},size=${page.size})}">[[${i}+1]]</a>
+             <a th:href="@{/produtos(page=${i},size=${page.size})}">[[${i}+1]]</a>
         </li>
     </th:block>
-  <li class="page-item" th:if="${page.hasNext()}"><a class="page-link" th:href="@{/ppage(page=${page.number+1},size=${page.size})}">Próximo</a></li>
+  <li class="page-item" th:if="${page.hasNext()}"><a class="page-link" th:href="@{/produtos(page=${page.number+1},size=${page.size})}">Próximo</a></li>
 </ul> 
 
 </section> 
