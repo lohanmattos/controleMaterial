@@ -35,15 +35,14 @@ public class ProdutoControle {
 	private ProdutoRepositorio produtoRepositorio;
 		
 	
-//Listar
+	//Listar
 	@RequestMapping("/produtos")
 	public String listarProduto(@PageableDefault(size = 3) Pageable pageable, Model model) {				
 		      Page<Produto> produto = produtoRepositorio.findAll(pageable);
 		      model.addAttribute("page", produto);
 		      return "home";
 		  }
-					
-	
+						
 	//Novo
 	@GetMapping("/novo")
 	public String novoProduto(Model model, Produto produto) {
