@@ -8,6 +8,9 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -31,8 +34,8 @@ public class ProdutoControle {
 	@Autowired
 	private ProdutoRepositorio produtoRepositorio;
 		
-	
-	//Listar
+	/*
+//Listar
 	@RequestMapping("/produtos")
 	public String listarProduto(Model model) {		
 		List<Produto> produto = produtoRepositorio.findAll();		
@@ -41,6 +44,9 @@ public class ProdutoControle {
 		return "home";
 		
 	}
+
+	*/
+	
 	//Novo
 	@GetMapping("/novo")
 	public String novoProduto(Model model, Produto produto) {
@@ -53,7 +59,7 @@ public class ProdutoControle {
 	public String salvarProduto(Model model, Produto produto) {
 		model.addAttribute("produto", produtoRepositorio.save(produto));
 
-		return "redirect:/produtos";	
+		return "redirect:/ppage";	
 	}
 	
 	//Editar Produto
@@ -71,7 +77,7 @@ public class ProdutoControle {
 	@RequestMapping(path = "/deletar/{id}", method = RequestMethod.GET)
 	public String excluirProduto(@PathVariable String id) {
 		produtoRepositorio.deleteById(id);
-		return "redirect:/produtos";
+		return "redirect:/ppage";
 	}
 	
 	
@@ -92,7 +98,7 @@ public class ProdutoControle {
 			return "redirect:/produtos";
 			
 		} catch (Exception e) {
-			 return "redirect:/produtos";
+			 return "redirect:/ppage";
 		}
 	
 	}
@@ -111,10 +117,18 @@ public class ProdutoControle {
 			return "home"; 
 		}else {
 			
-			return "redirect:/produtos" ;
+			return "redirect:/ppage" ;
 		}
 		
 	}
+	
+	  @GetMapping("/ppage")
+	  public String getEmployees(@PageableDefault(size = 5) Pageable pageable,
+	                             Model model) {
+	      Page<Produto> page = produtoRepositorio.findAll(pageable);
+	      model.addAttribute("page", page);
+	      return "home";
+	  }
 	
 
 }
