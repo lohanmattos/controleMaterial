@@ -23,6 +23,7 @@
 									<label class="control-label">Setor: </label>
 																
 									<select class="form-control" name="setor" th:field="*{setor}" id="setor">
+										<option value=" "></option>
 									  <option value="Seção Técnica">Seção Técnica</option>
 									  <option value="Seção de Administrativa">Seção de Administrativa</option>
 									  <option value="Comando">Comando</option>
@@ -56,6 +57,7 @@
 								<div class="form-group">
 									<label class="control-label">Status: </label>									
 									<select class="form-control" th:field="*{status}" name="conferido" id="conferido">
+										<option value=" "></option>
 									  <option value="Conferido">Conferido</option>
 									  <option value="Não Conferido">Não Conferido</option>
 									</select>

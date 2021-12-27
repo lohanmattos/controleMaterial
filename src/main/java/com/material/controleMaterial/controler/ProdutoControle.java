@@ -137,10 +137,10 @@ public class ProdutoControle {
 
 			model.addAttribute("listarProduto", produto);
 			
-			return "redirect:/produtos";
+			return "pageconferir";
 			
 		} catch (Exception e) {
-			 return "redirect:/produtos";
+			 return "pageconferir";
 		}
 	
 		
