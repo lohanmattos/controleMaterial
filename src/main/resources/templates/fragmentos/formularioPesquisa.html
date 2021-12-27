@@ -3,7 +3,7 @@
 <br>
 <h3 class="page-header">Material Carga</h3>
 <form method="get" action="#" th:action="@{/listar}" th:object="${produto}" >
-				<div class="panel panel-default">
+				<div class="panel panel-primary">
 					<div class="panel-heading">
 						Filtro
 					</div>
@@ -13,12 +13,12 @@
 							<div class="col-sm-2">
 								<div class="form-group">
 									<label class="control-label" for="codigo">Número Patrimonial: </label>
-									<input class="form-control" name="numeroPatrimonial"/>
+									
 								</div>
 							</div>
 							
-							<div class="col-sm-8">
-							
+							<div class="col-sm-6">
+							<input class="form-control" name="numeroPatrimonial"/>
 							</div>
 						</div>
 						
@@ -38,6 +38,7 @@
 					<tr>
 						<th>Código</th>
 						<th>Nome</th>
+						<th>Setor</th>
 						<th>Status</th>
 						<th>Data</th>
 						<th>Editar</th>
@@ -49,6 +50,7 @@
 					<tr th:each="produto : ${listarProduto}">
 						<td th:text="${produto.numeroPatrimonial}"</td>
 						<td th:text="${produto.nomeclatura}"</td>
+						<td th:text="${produto.setor}"</td>
 						<td th:text="${produto.status}"</td>
 						<td th:text="${produto.dataConferido}"</td>
 						<td><a th:href="@{/{id}(id=${produto.numeroPatrimonial})}" class="btn btn-outline-primary">Editar</a></td>

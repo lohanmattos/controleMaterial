@@ -8,9 +8,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -33,15 +31,16 @@ public class ProdutoControle {
 	
 	@Autowired
 	private ProdutoRepositorio produtoRepositorio;
-		
 	
+		
 	//Listar
 	@RequestMapping("/produtos")
-	public String listarProduto(@PageableDefault(size = 3) Pageable pageable, Model model) {				
-		      Page<Produto> produto = produtoRepositorio.findAll(pageable);
-		      model.addAttribute("page", produto);
+	public String listarProduto(Model model) {				
+		      List<Produto> produto = produtoRepositorio.findAll();
+		      model.addAttribute("listarProduto", produto);
 		      return "home";
-		  }
+	
+	}
 						
 	//Novo
 	@GetMapping("/novo")
@@ -55,7 +54,7 @@ public class ProdutoControle {
 	public String salvarProduto(Model model, Produto produto) {
 		model.addAttribute("produto", produtoRepositorio.save(produto));
 
-		return "redirect:/produtos";	
+		return "redirect:/cadastrarProduto";	
 	}
 	
 	//Editar Produto
@@ -78,13 +77,15 @@ public class ProdutoControle {
 	
 	
 	//conferir
-	@GetMapping("/conferir/{numeroPatrimonial}/{status}")
-	public String conferirMaterial(@PathVariable String numeroPatrimonial, @PathVariable String status,  Model model) {
+	@GetMapping("/conferir/{numeroPatrimonial}/{setor}")
+	public String conferirMaterial(@PathVariable String numeroPatrimonial, @PathVariable String setor,  Model model) {
 		
 		Produto produto = produtoRepositorio.getById(numeroPatrimonial);
 		
 		try {
-			produto.setStatus(status);
+			
+			produto.setSetor(setor);
+			produto.setStatus(setor);
 			produto.setDataConferido(LocalDate.now());
 			
 			produtoRepositorio.save(produto);
@@ -97,6 +98,8 @@ public class ProdutoControle {
 			 return "redirect:/produtos";
 		}
 	
+		
+		
 	}
 	@GetMapping(path ="/listar")
 	public String findId(@RequestParam String numeroPatrimonial, Model model) {
@@ -117,5 +120,33 @@ public class ProdutoControle {
 		}
 		
 	}
+	
+	
+	//conferir
+	@GetMapping(path = "/conferirURL")
+	public String conferirMaterialURL(@RequestParam("numeroPatrimonial") String numeroPatrimonial, @RequestParam ("setor") String setor, Model model) {
+		
+		Produto produto = produtoRepositorio.getById(numeroPatrimonial);
+		
+		try {
+			produto.setStatus("Conferido");
+			produto.setSetor(setor);
+			produto.setDataConferido(LocalDate.now());
+			
+			produtoRepositorio.save(produto);
+
+			model.addAttribute("listarProduto", produto);
+			
+			return "redirect:/produtos";
+			
+		} catch (Exception e) {
+			 return "redirect:/produtos";
+		}
+	
+		
+		
+	}
+	
+	
 	
 }
