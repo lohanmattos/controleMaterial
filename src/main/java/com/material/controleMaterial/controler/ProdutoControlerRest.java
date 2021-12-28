@@ -18,7 +18,7 @@ import com.material.controleMaterial.repositorio.ProdutoRepositorio;
 
 @RestController
 @Transactional
-public class ProducoControlerRest {
+public class ProdutoControlerRest {
 	
 	
 	
@@ -32,7 +32,7 @@ public class ProducoControlerRest {
 		Produto produto = produtoRepositorio.getById(numeroPatrimonial);
 					
 			produto.setSetor(setor);
-			produto.setStatus(setor);
+			produto.setStatus("Conferido");
 			produto.setDataConferido(LocalDate.now());
 			
 			produtoRepositorio.save(produto);
