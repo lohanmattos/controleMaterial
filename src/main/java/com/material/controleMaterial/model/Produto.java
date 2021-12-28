@@ -6,6 +6,7 @@ import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -49,6 +50,7 @@ public class Produto {
 
 
 	@Id
+	@NotEmpty
 	private String numeroPatrimonial;
 	
 	private String nomeclatura; 

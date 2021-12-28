@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.material.controleMaterial.model.Produto;
 import com.material.controleMaterial.repositorio.ProdutoRepositorio;
@@ -51,27 +52,27 @@ public class ProdutoControle {
 	
 	//Salvar
 	@PostMapping("/salvar")
-	public String salvarProduto(Model model, Produto produto) {
+	public String salvarProduto(Model model, Produto produto, RedirectAttributes attributes) {
 		model.addAttribute("produto", produtoRepositorio.save(produto));
-
-		return "redirect:/cadastrarProduto";	
+	
+		attributes.addFlashAttribute("mensagem", "Produto Cadastrado com Sucesso.");
+		return "redirect:/produtos";	
 	}
 	
 	//Editar Produto
 	@GetMapping("/{numeroPatrimonial}")
 	public String alterarProduto(@PathVariable("numeroPatrimonial") String numeroPatrimonial, Model model) {
 		Optional<Produto> produto = produtoRepositorio.findById(numeroPatrimonial);
-			
-		model.addAttribute("produto", produto);
-			
+					
+		model.addAttribute("produto", produto);	
 		return "editarProduto";
-	}
-		
+	}		
 		
 	//Deletar Produto
 	@RequestMapping(path = "/deletar/{id}", method = RequestMethod.GET)
-	public String excluirProduto(@PathVariable String id) {
+	public String excluirProduto(@PathVariable String id, RedirectAttributes attributes) {
 		produtoRepositorio.deleteById(id);
+		attributes.addFlashAttribute("mensagemErro", "Produto Excluído com Sucesso.");
 		return "redirect:/produtos";
 	}
 	
@@ -142,11 +143,7 @@ public class ProdutoControle {
 		} catch (Exception e) {
 			 return "pageconferir";
 		}
-	
-		
-		
+					
 	}
-	
-	
-	
+			
 }
