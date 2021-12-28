@@ -1,14 +1,11 @@
 package com.material.controleMaterial.controler;
 
-
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -77,31 +74,6 @@ public class ProdutoControle {
 	}
 	
 	
-	//conferir
-	@GetMapping("/conferir/{numeroPatrimonial}/{setor}")
-	public String conferirMaterial(@PathVariable String numeroPatrimonial, @PathVariable String setor,  Model model) {
-		
-		Produto produto = produtoRepositorio.getById(numeroPatrimonial);
-		
-		try {
-			
-			produto.setSetor(setor);
-			produto.setStatus(setor);
-			produto.setDataConferido(LocalDate.now());
-			
-			produtoRepositorio.save(produto);
-
-			model.addAttribute("listarProduto", produto);
-			
-			return "redirect:/produtos";
-			
-		} catch (Exception e) {
-			 return "redirect:/produtos";
-		}
-	
-		
-		
-	}
 	@GetMapping(path ="/listar")
 	public String findId(@RequestParam String numeroPatrimonial, Model model) {
 		
@@ -121,29 +93,5 @@ public class ProdutoControle {
 		}
 		
 	}
-	
-	
-	//conferir
-	@GetMapping(path = "/conferirURL")
-	public String conferirMaterialURL(@RequestParam("numeroPatrimonial") String numeroPatrimonial, @RequestParam ("setor") String setor, Model model) {
-		
-		Produto produto = produtoRepositorio.getById(numeroPatrimonial);
-		
-		try {
-			produto.setStatus("Conferido");
-			produto.setSetor(setor);
-			produto.setDataConferido(LocalDate.now());
-			
-			produtoRepositorio.save(produto);
-
-			model.addAttribute("listarProduto", produto);
-			
-			return "pageconferir";
-			
-		} catch (Exception e) {
-			 return "pageconferir";
-		}
-					
-	}
-			
+				
 }
