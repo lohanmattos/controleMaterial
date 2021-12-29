@@ -34,21 +34,22 @@ public class ProdutoControle {
 	//Listar
 	@RequestMapping("/produtos")
 	public String listarProduto(Model model) {				
-		      List<Produto> produto = produtoRepositorio.findAll();
-		      model.addAttribute("listarProduto", produto);
-		      return "home";
+		  List<Produto> produto = produtoRepositorio.findAll();
+		  model.addAttribute("listarProduto", produto);
+		  return "home";
 	
 	}
+	
 						
 	//Novo
-	@GetMapping("/novo")
+	@GetMapping("adm/novo")
 	public String novoProduto(Model model, Produto produto) {
 		model.addAttribute("produto", produto);
 		return "cadastrarProduto";
 	}
 	
 	//Salvar
-	@PostMapping("/salvar")
+	@PostMapping("adm/salvar")
 	public String salvarProduto(Model model, Produto produto, RedirectAttributes attributes) {
 		model.addAttribute("produto", produtoRepositorio.save(produto));
 	
@@ -57,7 +58,7 @@ public class ProdutoControle {
 	}
 	
 	//Editar Produto
-	@GetMapping("/{numeroPatrimonial}")
+	@GetMapping("adm/{numeroPatrimonial}")
 	public String alterarProduto(@PathVariable("numeroPatrimonial") String numeroPatrimonial, Model model) {
 		Optional<Produto> produto = produtoRepositorio.findById(numeroPatrimonial);
 					
@@ -66,7 +67,7 @@ public class ProdutoControle {
 	}		
 		
 	//Deletar Produto
-	@RequestMapping(path = "/deletar/{id}", method = RequestMethod.GET)
+	@RequestMapping(path = "adm/deletar/{id}", method = RequestMethod.GET)
 	public String excluirProduto(@PathVariable String id, RedirectAttributes attributes) {
 		produtoRepositorio.deleteById(id);
 		attributes.addFlashAttribute("mensagemErro", "Produto Excluído com Sucesso.");
@@ -75,7 +76,7 @@ public class ProdutoControle {
 	
 	
 	@GetMapping(path ="/listar")
-	public String findId(@RequestParam String numeroPatrimonial, Model model) {
+	public String findId(@RequestParam String numeroPatrimonial, Model model, RedirectAttributes attributes) {
 		
 		Optional<Produto> produto = produtoRepositorio.findById(numeroPatrimonial);
 		
@@ -89,6 +90,7 @@ public class ProdutoControle {
 			return "home"; 
 		}else {
 			
+			attributes.addFlashAttribute("mensagemNaoAchado", "Número Patrimonial não existe.");
 			return "redirect:/produtos" ;
 		}
 		

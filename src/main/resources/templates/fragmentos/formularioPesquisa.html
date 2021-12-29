@@ -15,7 +15,7 @@
 								</div>
 							</div>							
 							<div class="col-sm-4">
-							<input class="form-control" name="numeroPatrimonial"/>
+							<input class="form-control" name="numeroPatrimonial" id="myInput"/>
 							</div>
 							<button class="btn btn-default" type="submit">
 								<span class="fa fa-search"></span>
@@ -35,20 +35,20 @@
 						<th>Setor</th>
 						<th>Status</th>
 						<th>Data</th>
-						<th>Editar</th>
-						<th>Excluir</th>
+						<th sec:authorize="hasAuthority('ADMIN')">Editar</th>
+						<th sec:authorize="hasAuthority('ADMIN')">Excluir</th>
 					</tr>
 				</thead>
 				
-				<tbody>
+				<tbody id="myTable">
 					<tr th:each="produto : ${listarProduto}">
 						<td th:text="${produto.numeroPatrimonial}"</td>
 						<td th:text="${produto.nomeclatura}"</td>
 						<td th:text="${produto.setor}"</td>
 						<td th:text="${produto.status}"</td>
 						<td th:text="${produto.dataConferido}"</td>
-						<td><a th:href="@{/{id}(id=${produto.numeroPatrimonial})}" class="btn btn-outline-primary">Editar</a></td>
-						<td><a th:href="@{/deletar/{id}(id=${produto.numeroPatrimonial})}" class="btn btn-outline-danger">Excluir</a></td>
+						<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/adm/{id}(id=${produto.numeroPatrimonial})}" class="btn btn-outline-primary">Editar</a></td>
+						<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/adm/deletar/{id}(id=${produto.numeroPatrimonial})}" class="btn btn-outline-danger">Excluir</a></td>
 					</tr>			
 				</tbody>
 </table>		

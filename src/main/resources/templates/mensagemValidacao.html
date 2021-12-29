@@ -16,6 +16,10 @@
   <span th:text="${mensagemErro}"></span>
 </div>
 
+<div class="alert alert-warning" role="alert" th:if="${not #strings.isEmpty(mensagemNaoAchado)}">
+  <span th:text="${mensagemNaoAchado}"></span>
+</div>
+
 
 </body>						
 </html>

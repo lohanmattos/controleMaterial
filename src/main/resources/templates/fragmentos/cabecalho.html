@@ -18,7 +18,7 @@
 						<li><a href="/produtos">Material</a></li>
 		            </ul>
 		            <ul class="nav navbar-nav">
-						<li><a href="/novo">Cadastrar Material</a></li>
+						<li sec:authorize="hasAuthority('ADMIN')"><a href="/adm/novo">Cadastrar Material</a></li>
 		            </ul>
 		            
 		            <ul class="nav navbar-nav navbar-right">
