@@ -21,7 +21,6 @@ import com.material.controleMaterial.repositorio.ProdutoRepositorio;
 public class ProdutoControlerRest {
 	
 	
-	
 	@Autowired
 	private ProdutoRepositorio produtoRepositorio;
 	

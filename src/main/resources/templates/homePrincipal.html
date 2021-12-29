@@ -1,5 +1,5 @@
 <!DOCTYPE html>	
-<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <title>Página Inicial</title>
   		<meta charset="UTF-8"/>	 		  		
@@ -11,11 +11,12 @@
 		
     
     	<div th:replace="~{fragmentos/cabecalho :: cabecalho}"></div>
+    	
 </head>
-<body>
+<body>	
 	<div th:replace="~{fragmentos/conteudoHomePrincipal :: conteudoHomePrincipal}"></div>
     <hr />
-	<div th:replace="~{fragmentos/rodape :: rodape}"></div>
+	<div th:replace="~{fragmentos/rodape :: rodape}"></div>		
   	</div>
 
 
