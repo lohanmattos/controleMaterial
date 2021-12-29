@@ -69,5 +69,32 @@ public class ProdutoControlerRest {
 			return new ResponseEntity<>(mgsErro, HttpStatus.OK);	
 		}
 	}	
+	
+	
+	//conferir
+		@GetMapping(path = "/listarURL/{numeroPatrimonial}")
+		public ResponseEntity<String> listarMaterialURL(@PathVariable String numeroPatrimonial) {
+			
+			try {
+				Produto produto = produtoRepositorio.getById(numeroPatrimonial);
+				
+				
+				String mgsSucesso = "Nº Patrimonial: " + produto.getNumeroPatrimonial() + "\n"
+						+ " Setor: " + produto.getSetor() + "\n" + 
+						" Status: " + produto.getStatus() + "\n" + 
+						"Conferido em: " + produto.getDataConferido(); 
+				;
+							
+				return new ResponseEntity<>(mgsSucesso, HttpStatus.OK);	
+			} catch (Exception EntityNotFoundException) {
+				
+				String mgsErro = "Nº Patrimonial: " + numeroPatrimonial + ""
+						+ " não foi encontrado na base de dados."
+				;
+				
+				return new ResponseEntity<>(mgsErro, HttpStatus.OK);	
+			}
+		}	
+
 
 }

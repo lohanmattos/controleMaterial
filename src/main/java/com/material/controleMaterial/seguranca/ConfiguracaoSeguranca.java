@@ -25,7 +25,7 @@ public class ConfiguracaoSeguranca extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.authorizeRequests()
-		.antMatchers("/conferirURL/**", "/error").permitAll()
+		.antMatchers("/conferirURL/**", "/listarURL/**", "/error").permitAll()
 		.antMatchers("/adm/**").hasAuthority(Role.ADMIN.getNome())
 			.anyRequest().authenticated()
 			.and()
