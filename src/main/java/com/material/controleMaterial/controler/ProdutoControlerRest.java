@@ -45,9 +45,11 @@ public class ProdutoControlerRest {
 	//conferir
 	@GetMapping(path = "/conferirURL")
 	public ResponseEntity<String> conferirMaterialURL(@RequestParam("numeroPatrimonial") String numeroPatrimonial, @RequestParam ("setor") String setor) {
+
 		
-		Produto produto = produtoRepositorio.getById(numeroPatrimonial);
-		
+		try {
+			Produto produto = produtoRepositorio.getById(numeroPatrimonial);
+			
 			produto.setStatus("Conferido");
 			produto.setSetor(setor);
 			produto.setDataConferido(LocalDate.now());
@@ -57,9 +59,15 @@ public class ProdutoControlerRest {
 					+ " Conferido Com Sucesso"
 			;
 						
-			return new ResponseEntity<>(mgsSucesso, HttpStatus.OK);		
-					
-	}
-	
+			return new ResponseEntity<>(mgsSucesso, HttpStatus.OK);	
+		} catch (Exception EntityNotFoundException) {
+			
+			String mgsErro = "Nº Patrimonial: " + numeroPatrimonial + ""
+					+ " não foi encontrado na base de dados."
+			;
+			
+			return new ResponseEntity<>(mgsErro, HttpStatus.OK);	
+		}
+	}	
 
 }
