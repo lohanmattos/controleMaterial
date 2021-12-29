@@ -11,8 +11,8 @@ import com.material.controleMaterial.seguranca.model.Role;
 import com.material.controleMaterial.seguranca.model.Usuario;
 import com.material.controleMaterial.seguranca.model.UsuarioRepositorio;
 
-//@Component
-//@Transactional
+@Component
+@Transactional
 public class PopulacaoInicialBanco implements CommandLineRunner {
 
 	@Autowired
