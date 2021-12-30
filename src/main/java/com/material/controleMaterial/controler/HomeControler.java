@@ -28,6 +28,7 @@ public class HomeControler {
         if (principal == null) {
             return "redirect:/";
         }
+        
         return "/login";
     }
 	
