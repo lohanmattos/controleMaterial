@@ -26,11 +26,13 @@ public class ConfiguracaoSeguranca extends WebSecurityConfigurerAdapter{
 		http
 		.authorizeRequests()
 		.antMatchers("/conferirURL/**", "/listarURL/**", "/error").permitAll()
+		.antMatchers("/css/**", "/js/**", "/resources/**", "/templates/**").permitAll()
 		.antMatchers("/adm/**").hasAuthority(Role.ADMIN.getNome())
 			.anyRequest().authenticated()
 			.and()
 		.formLogin()
-			.permitAll()
+			.loginPage("/login")
+			.permitAll()			
 			.and()
 		.logout()
 			.permitAll();
