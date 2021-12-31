@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Coruja Gestor</title>
+  <title>Coruja - Controle de Material</title>
 
   <!-- icheck bootstrap -->
   <link rel="stylesheet" th:href="@{/css/icheck-bootstrap.min.css}">
@@ -17,11 +17,14 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="" class="h1"><b>Coruja</b>Gestor</a>
+      <a href="" class="h1"><b>Coruja -</b> Controle de Material</a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Faça login para iniciar sua sessão</p>
       <form method="POST" th:action="@{/login}">
+      <div th:if="${param.error}">
+			<div class="alert alert-danger">Usuário ou senha inválidos.</div>
+		</div>
         <div class="input-group mb-3">
           <input name="username" type="text" class="form-control" placeholder="Usuário">
           <div class="input-group-append">
@@ -47,6 +50,8 @@
               </label>
             </div>
           </div>
+          <input type="hidden"
+			name="${_csrf.parameterName}" value="${_csrf.token}" />
           <!-- /.col -->
           <div class="col-4">
             <button type="submit" class="btn btn-primary btn-block">Entrar</button>
