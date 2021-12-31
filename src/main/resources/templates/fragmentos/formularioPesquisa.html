@@ -52,6 +52,15 @@
 					</tr>			
 				</tbody>
 </table>		
+<nav aria-label="...">
+		    <ul class="pagination">
+			    <li th:if="${listarProduto.totalPages > 0}" th:each="numeroPagina : ${numerosPaginas}" 
+			    	th:class="${numeroPagina==listarProduto.number + 1} ? 'page-item active' : 'page-item'">
+			    	<a class="page-link" th:href="@{/produtos(size=${listarProduto.size}, page=${numeroPagina})}"
+			        th:text=${numeroPagina}></a>
+			    </li>
+		    </ul>
+		</nav>
 </section>
 
 

@@ -1,15 +1,13 @@
 package com.material.controleMaterial;
 
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 
-import com.material.controleMaterial.seguranca.model.Role;
-import com.material.controleMaterial.seguranca.model.Usuario;
-import com.material.controleMaterial.seguranca.model.UsuarioRepositorio;
+import com.material.controleMaterial.model.Role;
+import com.material.controleMaterial.model.Usuario;
+import com.material.controleMaterial.repositorio.UsuarioRepositorio;
 
 //@Component
 //@Transactional

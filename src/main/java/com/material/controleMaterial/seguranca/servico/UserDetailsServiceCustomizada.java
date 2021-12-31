@@ -13,8 +13,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.material.controleMaterial.seguranca.model.Usuario;
-import com.material.controleMaterial.seguranca.model.UsuarioRepositorio;
+import com.material.controleMaterial.model.Usuario;
+import com.material.controleMaterial.repositorio.UsuarioRepositorio;
 
 @Service("userDetailsService")
 public class UserDetailsServiceCustomizada implements UserDetailsService{

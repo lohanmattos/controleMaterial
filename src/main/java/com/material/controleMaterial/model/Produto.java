@@ -21,9 +21,6 @@ public class Produto {
 				+ dataConferido + "]";
 	}
 
-	
-	
-	
 	@Override
 	public int hashCode() {
 		return Objects.hash(dataConferido, nomeclatura, numeroPatrimonial, quantidade, setor, status, valor);

@@ -1,4 +1,4 @@
-package com.material.controleMaterial.seguranca.model;
+package com.material.controleMaterial.model;
 
 public enum Role {
 	

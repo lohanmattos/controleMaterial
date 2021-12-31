@@ -2,10 +2,14 @@ package com.material.controleMaterial.controler;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -30,16 +34,37 @@ public class ProdutoControle {
 	@Autowired
 	private ProdutoRepositorio produtoRepositorio;
 	
-		
+	/*	
 	//Listar
-	@RequestMapping("/produtos")
-	public String listarProduto(Model model) {				
-		  List<Produto> produto = produtoRepositorio.findAll();
+	@RequestMapping("/produtos1")
+	public String listarProduto(Model model, Pageable pageable) {				
+		  Page<Produto> produto = produtoRepositorio.findAllProdutoListadoPaginado(pageable);
 		  model.addAttribute("listarProduto", produto);
 		  return "home";
 	
 	}
+	*/
 	
+	@GetMapping("/produtos")
+	public String pessoas(Model model, @RequestParam("page") Optional<Integer> pagina, @RequestParam("size") Optional<Integer> tamanho) {
+		int paginaAtual = pagina.orElse(1) - 1;
+		int tamanhoPagina = tamanho.orElse(5);
+		
+		PageRequest requisicao = PageRequest.of(paginaAtual, tamanhoPagina);
+		Page<Produto> listaPaginada = produtoRepositorio.findAllProdutoListadoPaginado(requisicao);
+		
+		model.addAttribute("listarProduto", listaPaginada);
+
+		int totalPaginas = listaPaginada.getTotalPages();
+		if (totalPaginas > 0) {
+			List<Integer> numerosPaginas = IntStream.rangeClosed(1, totalPaginas)
+						.boxed()
+						.collect(Collectors.toList());
+			model.addAttribute("numerosPaginas", numerosPaginas);
+		}
+		
+		return "home";
+	}
 						
 	//Novo
 	@GetMapping("adm/novo")
