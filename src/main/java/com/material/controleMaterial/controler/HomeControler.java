@@ -16,20 +16,7 @@ public class HomeControler {
 	}
 	
 	@GetMapping("/login1")
-	public String login(Principal principal) {
-        if (principal != null) {
-            return "redirect:/";
-        }
-        return "/login";
+	public String login() {
+		return "login";
     }
-	
-	@GetMapping("/logout")
-	public String logout(Principal principal) {
-        if (principal == null) {
-            return "redirect:/";
-        }
-        
-        return "/login";
-    }
-	
 }
