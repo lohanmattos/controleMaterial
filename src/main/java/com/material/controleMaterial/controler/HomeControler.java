@@ -15,7 +15,7 @@ public class HomeControler {
 		
 	}
 	
-	@GetMapping("/login")
+	@GetMapping("/login1")
 	public String login(Principal principal) {
         if (principal != null) {
             return "redirect:/";
