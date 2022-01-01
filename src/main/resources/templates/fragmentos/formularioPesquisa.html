@@ -25,9 +25,9 @@
 				</div>
 </form>	
 <div>
-<input type="button" id="btnExport" value="Gerar .Pdf" />
+
 </div>
-	<table id="tblCustomers" class="table table-striped table-bordered" th:fragment="tabela">	
+	<table id="example1"  class="table table-striped table-bordered" th:fragment="tabela">	
 				<thead>
 					<tr>
 						<th>Código</th>
@@ -51,15 +51,6 @@
 						<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/adm/deletar/{id}(id=${produto.numeroPatrimonial})}" class="btn btn-outline-danger">Excluir</a></td>
 					</tr>			
 				</tbody>
-	</table>		
-<nav aria-label="...">
-		    <ul class="pagination">
-			    <li th:if="${listarProduto.totalPages > 0}" th:each="numeroPagina : ${numerosPaginas}" 
-			    	th:class="${numeroPagina==listarProduto.number + 1} ? 'page-item active' : 'page-item'">
-			    	<a class="page-link" th:href="@{/produtos(size=${listarProduto.size}, page=${numeroPagina})}"
-			        th:text=${numeroPagina}></a>
-			    </li>
-		    </ul>
-		</nav>		
+	</table>			
 </section>
 

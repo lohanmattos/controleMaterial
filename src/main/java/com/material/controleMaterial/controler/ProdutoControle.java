@@ -34,17 +34,17 @@ public class ProdutoControle {
 	@Autowired
 	private ProdutoRepositorio produtoRepositorio;
 	
-	/*	
+		
 	//Listar
-	@RequestMapping("/produtos1")
-	public String listarProduto(Model model, Pageable pageable) {				
-		  Page<Produto> produto = produtoRepositorio.findAllProdutoListadoPaginado(pageable);
+	@RequestMapping("/produtos")
+	public String listarProduto(Model model) {				
+		  List<Produto> produto = produtoRepositorio.findAllProdutoListado();
 		  model.addAttribute("listarProduto", produto);
 		  return "home";
 	
 	}
-	*/
 	
+	/*
 	@GetMapping("/produtos")
 	public String pessoas(Model model, @RequestParam("page") Optional<Integer> pagina, @RequestParam("size") Optional<Integer> tamanho) {
 		int paginaAtual = pagina.orElse(1) - 1;
@@ -65,6 +65,7 @@ public class ProdutoControle {
 		
 		return "home";
 	}
+	*/
 						
 	//Novo
 	@GetMapping("adm/novo")

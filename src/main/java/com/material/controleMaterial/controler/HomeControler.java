@@ -27,7 +27,7 @@ public class HomeControler {
 	
 	@GetMapping("/testePdf")
 	public String gerarPdf() {
-		return "testePdf";
+		return "testePdf2";
     }
 	
 	
