@@ -25,4 +25,10 @@ public class HomeControler {
 		return "login";
     }
 	
+	@GetMapping("/testePdf")
+	public String gerarPdf() {
+		return "testePdf";
+    }
+	
+	
 }

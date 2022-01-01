@@ -25,7 +25,7 @@ public class ConfiguracaoSeguranca extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.authorizeRequests()
-		.antMatchers("/conferirURL/**", "/listarURL/**", "/error").permitAll()
+		.antMatchers("/conferirURL/**", "/listarURL/**", "/error","/testePdf").permitAll()
 		.antMatchers("/css/**", "/js/**", "/resources/**").permitAll()
 		.antMatchers("/adm/**").hasAuthority(Role.ADMIN.getNome())
 			.anyRequest().authenticated()
@@ -38,6 +38,7 @@ public class ConfiguracaoSeguranca extends WebSecurityConfigurerAdapter{
 			.permitAll();
 	}
 
+	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth
