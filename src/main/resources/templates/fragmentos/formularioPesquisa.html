@@ -16,12 +16,12 @@
 				<tbody id="myTable">
 					<tr th:each="produto : ${listarProduto}">
 						<td th:text="${produto.numeroPatrimonial}"</td>
-						<td th:text="${produto.nomeclatura}"</td>
+						<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/adm/{id}(id=${produto.numeroPatrimonial})}" th:text="${produto.nomeclatura}"</td>
 						<td th:text="${produto.setor}"</td>
 						<td th:text="${produto.status}"</td>
 						<td th:text="${produto.dataConferido}"</td>
-						<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/adm/{id}(id=${produto.numeroPatrimonial})}" class="btn btn-outline-primary">Editar</a></td>
-						<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/adm/deletar/{id}(id=${produto.numeroPatrimonial})}" class="btn btn-outline-danger">Excluir</a></td>
+						<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/adm/{id}(id=${produto.numeroPatrimonial})}" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a></td>						
+						<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/adm/deletar/{id}(id=${produto.numeroPatrimonial})}" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a></td>
 					</tr>			
 				</tbody>
 	</table>			
