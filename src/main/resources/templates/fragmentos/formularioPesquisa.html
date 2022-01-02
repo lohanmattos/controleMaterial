@@ -1,9 +1,7 @@
 <section class="container" th:fragment="formularioPesquisa">
 <h3 class="page-header">Material Carga</h3>
 <th:block th:include="mensagemValidacao"></th:block>  
-<div>
-</div>
-	<table id="example1"  class="table table-bordered table-striped" th:fragment="tabela">	
+<table id="example1"  class="table table-bordered table-striped" th:fragment="tabela">	
 				<thead>
 					<tr>
 						<th>Código</th>
@@ -14,8 +12,7 @@
 						<th sec:authorize="hasAuthority('ADMIN')">Editar</th>
 						<th sec:authorize="hasAuthority('ADMIN')">Excluir</th>
 					</tr>
-				</thead>
-				
+				</thead>				
 				<tbody id="myTable">
 					<tr th:each="produto : ${listarProduto}">
 						<td th:text="${produto.numeroPatrimonial}"</td>
@@ -29,4 +26,3 @@
 				</tbody>
 	</table>			
 </section>
-
