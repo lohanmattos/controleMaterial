@@ -1,5 +1,6 @@
 <section class="container" th:fragment="formularioPesquisa">
 <h3 class="page-header">Material Carga</h3>
+  
 <th:block th:include="mensagemValidacao"></th:block>  
 <table id="example1"  class="table table-bordered table-striped" th:fragment="tabela">	
 				<thead>
@@ -10,8 +11,7 @@
 						<th>Status</th>
 						<th>Data</th>
 						<th sec:authorize="hasAuthority('ADMIN')">Editar</th>
-						<th sec:authorize="hasAuthority('ADMIN')">Excluir</th>
-						
+						<th sec:authorize="hasAuthority('ADMIN')">Excluir</th>						
 					</tr>
 				</thead>				
 				<tbody id="myTable">
@@ -22,7 +22,7 @@
 						<td th:text="${produto.status}"</td>
 						<td th:text="${produto.dataConferido}"</td>
 						<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/adm/{id}(id=${produto.numeroPatrimonial})}" class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i></a></td>						
-						<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/adm/deletar/{id}(id=${produto.numeroPatrimonial})}" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a></td>
+						<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/adm/deletar/{id}(id=${produto.numeroPatrimonial})}" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a></td>								
 					</tr>			
 				</tbody>
 	</table>			

@@ -22,7 +22,12 @@
 		            
 		            <ul class="nav navbar-nav">
 						<li sec:authorize="hasAuthority('ADMIN-NOVO')"><a href="/adm/novoUsuario">Cadastrar Usuários</a></li>
-		            </ul>		            
+		            </ul>	
+		            
+		            <ul class="nav navbar-nav">
+						<li sec:authorize="hasAuthority('ADMIN')"><a href="/adm/gerarqr">Gerar Códigos Qr</a></li>
+		            </ul>
+		            	            
 		            <ul class="nav navbar-nav navbar-right">																										
 						<li><a href="https://www.linkedin.com/in/lohan-amendola-a09b93154/" target="_blank">Linkedin</a></li>	
 						<li><a href="/logout" target="_blank">Sair</a></li>																																					

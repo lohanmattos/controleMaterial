@@ -30,5 +30,12 @@ public class HomeControler {
 		return "testePdf2";
     }
 	
+	@GetMapping("/adm/gerarqr")
+	public String gerarqrcode() {
+		return "qrcode";
+    }
+	
+	
+	
 	
 }

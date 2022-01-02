@@ -1,0 +1,60 @@
+<!DOCTYPE html>	
+<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <title>Material Carga - Gerar Qr Code</title>
+  		 <meta charset="UTF-8"/>	
+		 <meta name="viewport" content="width=device-width, initial-scale=1" />
+	     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"/>
+	     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" rel="stylesheet"/>	
+	     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet"/>		
+  		 
+  		 <div th:replace="~{fragmentos/cabecalho :: cabecalho}"></div>		
+  		 
+  		 <!--Icones-->
+  		 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+  		 
+</head>
+<body class="hold-transition sidebar-mini  ">
+	 <div class="container">     
+	 <br>
+			 <div class="qr-code-generator">
+			 
+			 <div id="qrcode"></div>
+			
+			<br>
+		
+			<input type="text" class="qr-url " placeholder="URL ou texto">
+			<input type="number" class="qr-size" value="128" min="20" max="500">
+			
+			<button  class="generate-qr-code">Gerar QRCODE</button>
+									
+			</div>
+
+	<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+	<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/130527/qrcode.js'></script>
+    <script  src="js/index.js"></script>
+      
+    <script>  
+		    $('.generate-qr-code').on('click', function(){
+		
+		// Clear Previous QR Code
+		$('#qrcode').empty();
+		
+		// Set Size to Match User Input
+		$('#qrcode').css({
+		'width' : $('.qr-size').val(),
+		'height' : $('.qr-size').val()
+		})
+		
+		// Generate and Output QR Code
+		$('#qrcode').qrcode({width: $('.qr-size').val(),height: $('.qr-size').val(),text: $('.qr-url').val()});
+		
+		});
+   
+    </script>      
+    </div>
+  	<hr />
+	<div th:replace="~{fragmentos/rodape :: rodape}"></div>
+</div>
+</body>
+</html>
